@@ -5,7 +5,7 @@ from app.auth.models import User
 from app.note.models import Note
 from app.auth.views import auth
 from app.note.views import note
-from app.extensions import db, migrate, mail, ckeditor, login_manager
+from app.extensions import db, migrate, mail, login_manager # ckeditor 
 
 
 
@@ -21,10 +21,6 @@ def create_app():
 
     register_extensions(app)
     register_blueprints(app)
-
-    login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
-    login_manager.init_app(app)
 
     # Invalid URL
     @app.errorhandler(404)
@@ -57,7 +53,7 @@ def register_extensions(app):
     mail.init_app(app)
 
     # Setup Flask-CKEditor
-    ckeditor.init_app(app)
+    # ckeditor.init_app(app)
 
     # Flask-RESTful
     # api.init_app(app)
