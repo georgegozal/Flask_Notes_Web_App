@@ -4,4 +4,4 @@ from werkzeug.security import generate_password_hash, check_password_hash
 #from . import db
 #from flask_login import login_user, login_required, logout_user, current_user
 
-auth = Blueprint('auth',__name__)
+note = Blueprint('note',__name__,template_folder='templates/note')
