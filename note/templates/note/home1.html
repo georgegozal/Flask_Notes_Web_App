@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Notes</title>
+    <style>
+    </style>
+{% endblock %}
+
+
+{% block content %}
+<html>
+
+
+    {% if notes|length < 1 %}
+        <h4 style="text-align: center">There are not notes. Create one below!</h4>
+    {% else %}
+    <h1 align="center">Notes</h1>
+    <!-- Making the table responsive -->
+    <div class="content">
+        <div class="table">
+        <table class="table">
+            <tr>
+
+                <th scope="col">Note</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+            {% for note in notes %}
+
+            <tr>
+
+                <td class="td1">
+                    <div class="md-form mb-4 pink-textarea active-pink-textarea">
+                        <textarea id="form18" class="md-textarea form-control" rows="3" readonly> {{ note.text }}</textarea>
+                    </div>
+                </td> 
+
+                <td>{{ note.date.date() }}</td>
+                <td>
+                    <a href="/delete/{{note.id}}">Delete</a><br>
+                    <a href="/update/{{note.id}}">Update</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+    {% endif %}
+    
+    <div class="form-group">
+        <form method="POST">
+            <textarea class="form-control" rows="5" name="text" id="text" ></textarea>
+            <br>
+            <div align="center">
+                <button type="submit" class="btn btn-primary">Add Note</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>
+{% endblock %} 

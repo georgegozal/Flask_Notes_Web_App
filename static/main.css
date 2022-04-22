@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+#content {
+    width: 79%;
+}
+
+table,  th {
+    border: 1px solid white;
+}
+
+table {
+    display: inline-block;
+    white-space: nowrap;
+    width:700px;
+}
+.table {
+    /* background-color: pink; */
+    height: 600px;
+    overflow-y:auto;
+    white-space: nowrap;
+}
+
+.td1 {
+    overflow: auto;
+    display: inline-block;
+    width: 900px;
+}
+
+
+
+
+

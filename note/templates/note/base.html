@@ -14,11 +14,11 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     crossorigin="anonymous"/>
-    
-    <title>{% block title %}Home{% endblock %}</title>
+    {% block head %}<title>Home</title>{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}"> 
 
 </head>
-<body>
+<body style>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button 
         class="navbar-toggler" 
@@ -36,10 +36,15 @@
                     <a class="nav-item nav-link" id="login" href="/login">Log In</a>
                     <a class="nav-item nav-link" id="sign-up" href="/sign-up">Sign Up</a>
                 {% endif %}
-                
+
             </div>
         </div>  
     </nav>
+    {% if not user.is_authenticated %}
+        <h1 align="center">Notes app</h1>
+        <br>
+        <p align="center">If you want to access your notes, please <a href="/login">login</a></p>
+    {% endif %}
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}

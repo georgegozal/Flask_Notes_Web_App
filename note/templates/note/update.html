@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Update Notes</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="content" align="center">
+    <h1 style="text-align: center">Update Note</h1>
+    <br><br>
+
+    <div class="form-group">
+        <form action="/update/{{note.id}}" method="POST">
+            <textarea class="form-control" rows="7" name="text" id="text" >{{note.text}}</textarea>
+            <br>
+            <input type="submit" value="Update" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+{% endblock %} 
