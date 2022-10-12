@@ -1,5 +1,5 @@
 # Flask_Notes_Web_App
-
+[![build](https://github.com/georgegozal/Flask_Notes_Web_App/actions/workflows/tests.yml/badge.svg)](https://github.com/georgegozal/Flask_Notes_Web_App/actions/workflows/tests.yml)
 # you can test my app on heroku
 > https://flask-notes-app9.herokuapp.com/
 
