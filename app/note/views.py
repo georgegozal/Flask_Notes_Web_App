@@ -5,7 +5,7 @@ from app.extensions import db
 from .models import Note
 
 
-note = Blueprint('note',__name__,template_folder='templates/note')
+note = Blueprint('note_bl',__name__,template_folder='templates/note')
 
 @note.route('/', methods=['GET', 'POST'])
 @login_required
@@ -25,7 +25,7 @@ def home():
             except:
                 flash('There was an issue adding your task',category='error')
                 
-    notes = Note.query.order_by(Note.date).all()
+    notes = Note.query.filter_by(user_id=current_user.id).order_by(Note.date).all()
 
     return render_template("home1.html", user=current_user,notes=notes)
 

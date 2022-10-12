@@ -1,16 +1,18 @@
 from flask import Flask, render_template
 from flask_login import LoginManager
 from app.config import Config
-from app.auth.models import User
-from app.note.models import Note
+from flask_admin import Admin
+from flask_admin.menu import MenuLink
+from app.auth.models import User, UserView
+from app.note.models import Note, NoteView
 from app.auth.views import auth
 from app.note.views import note
 from app.extensions import db, migrate, mail, login_manager # ckeditor 
-
+from app.commands.commands import init_db, create_admin_user
 
 
 BLUEPRINTS = [auth,note]
-COMMANDS = []
+COMMANDS = [init_db, create_admin_user]
 
 
 def create_app():
@@ -21,6 +23,8 @@ def create_app():
 
     register_extensions(app)
     register_blueprints(app)
+    register_commands(app)
+    register_admin_panel(app)
 
     # Invalid URL
     @app.errorhandler(404)
@@ -39,6 +43,12 @@ def register_blueprints(app):
 
     for blueprint in BLUEPRINTS:
         app.register_blueprint(blueprint)
+
+
+def register_commands(app):
+
+    for command in COMMANDS:
+        app.cli.add_command(command)
 
 
 def register_extensions(app):
@@ -66,7 +76,11 @@ def register_extensions(app):
     login_manager.init_app(app)
 
 
-# def create_database(app):
-#     if not path.exists('.' + DB_NAME):
-#         db.create_all(app=app)
-#         print('Created Database!')
+def register_admin_panel(app):
+    admin = Admin(app)
+    admin.add_view(UserView(User, db.session))
+    admin.add_view(NoteView(Note, db.session))
+    # admin.add_view(FileView(
+    #     Config.PROJECT_ROOT + '/static/uploads', name='Static Files'))
+    # https://flask-admin.readthedocs.io/en/latest/api/mod_contrib_fileadmin/
+    admin.add_link(MenuLink(name="Return Home", url='/'))
