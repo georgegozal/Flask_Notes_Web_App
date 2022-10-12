@@ -62,6 +62,5 @@ def update(id):
         else:
             return redirect(f'/update/{id}')
         
-        
     else:
         return render_template('update.html',note=note,user=current_user)
