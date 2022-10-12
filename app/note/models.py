@@ -1,4 +1,4 @@
-from config import db 
+from app.extensions import db 
 from sqlalchemy.sql import func
 
 class Note(db.Model):
