@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-from flask_login import LoginManager
 from app.config import Config
 from flask_admin import Admin
 from flask_admin.menu import MenuLink
@@ -7,11 +6,11 @@ from app.auth.models import User, UserView
 from app.note.models import Note, NoteView
 from app.auth.views import auth
 from app.note.views import note
-from app.extensions import db, migrate, mail, login_manager # ckeditor 
+from app.extensions import db, migrate, mail, login_manager  # ckeditor
 from app.commands.commands import init_db, create_admin_user
 
 
-BLUEPRINTS = [auth,note]
+BLUEPRINTS = [auth, note]
 COMMANDS = [init_db, create_admin_user]
 
 

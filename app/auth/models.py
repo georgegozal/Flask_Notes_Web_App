@@ -1,17 +1,17 @@
-from app.extensions import db 
-from flask_login import UserMixin 
+from app.extensions import db
+from flask_login import UserMixin
 from flask_admin.contrib.sqla import ModelView
 from flask import redirect, url_for
 from flask_login import current_user
 
 
-class User(db.Model,UserMixin):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True, nullable=False, index=True)
     password = db.Column(db.String(150), nullable=False)
     first_name = db.Column(db.String(150), nullable=False, index=True)
     role = db.Column(db.String(100), default='user')
-    notes = db.relationship('Note', backref='note_user') # allow user to see its notes
+    notes = db.relationship('Note', backref='note_user')  # allow user to see its notes
 
     def __repr__(self):
         return self.first_name

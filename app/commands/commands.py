@@ -22,7 +22,7 @@ def create_admin_user():
         email='admin@gmail.com',
         password=generate_password_hash('admin', 'sha256'),
         role='admin'
-            )
+    )
     try:
         db.session.add(admin_user)
         db.session.commit()
