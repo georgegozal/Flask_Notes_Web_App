@@ -5,8 +5,6 @@ from app.auth.models import User
 from werkzeug.security import generate_password_hash
 
 
-@click.command('init_db')
-@with_appcontext
 def init_db():
     db.drop_all()
     db.create_all()
@@ -14,9 +12,13 @@ def init_db():
     click.echo("Created database")
 
 
-@click.command('make_admin')
+@click.command('init_db')
 @with_appcontext
-def create_admin_user():
+def init_db_command():
+    init_db()
+
+
+def add_admin():
     admin_user = User(
         first_name='Admin',
         email='admin@gmail.com',
@@ -29,3 +31,9 @@ def create_admin_user():
         click.echo('Admin has been added!')
     except Exception as e:
         click.echo(e)
+
+
+@click.command('add_admin')
+@with_appcontext
+def add_admin_command():
+    add_admin()

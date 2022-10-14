@@ -7,11 +7,11 @@ from app.note.models import Note, NoteView
 from app.auth.views import auth
 from app.note.views import note
 from app.extensions import db, migrate, mail, login_manager  # ckeditor
-from app.commands.commands import init_db, create_admin_user
+from app.commands.commands import init_db_command, add_admin_command
 
 
 BLUEPRINTS = [auth, note]
-COMMANDS = [init_db, create_admin_user]
+COMMANDS = [init_db_command, add_admin_command]
 
 
 def create_app():
