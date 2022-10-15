@@ -9,6 +9,8 @@ def test_notes(client):
         client.post('/login',data={'email': 'admin@gmail.com','password': 'admin'})
         assert current_user.is_authenticated
 
-    assert client.get('/').status_code == 200
-    response = client.post('/',
-        data={'text': 'Pytest fixtures allow writing pieces of code that are reusable across tests.'})
+        assert client.get('/').status_code == 200
+        response = client.post('/',
+            data={'text': 'Pytest fixtures allow writing pieces of code that are reusable across tests.',
+                'user_id': current_user.id
+            })
