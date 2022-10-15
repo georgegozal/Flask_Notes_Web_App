@@ -1,5 +1,4 @@
 from flask_login import current_user
-from werkzeug.security import check_password_hash
 
 
 APP_URLS = [
